@@ -2,188 +2,167 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Fitness & Sport Training</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>Fitness Training</title>
 
 <style>
 body{
-    margin:0;
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#1d2671,#c33764);
-    color:white;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1d2671,#c33764);
+    color: white;
+    margin: 0;
+    padding: 30px;
 }
-.container{
-    padding:40px;
-    max-width:1300px;
-    margin:auto;
+
+button{
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
 }
-h1,h2{text-align:center}
+
+#home button{
+    display: inline-block;
+}
 
 .workout{
-    display:none;
-}
-.workout-layout{
-    display:grid;
-    grid-template-columns:1.2fr 1fr;
-    gap:30px;
-    margin-top:30px;
-}
-ul{
-    list-style:none;
-    padding:0;
-}
-li.exercise{
-    background:rgba(255,255,255,0.2);
-    margin:10px 0;
-    padding:15px;
-    border-radius:15px;
-    cursor:pointer;
-}
-li.exercise:hover{
-    background:rgba(255,255,255,0.3);
+    display: none;
 }
 
-/* rechte Seite */
-.info-box{
-    background:rgba(255,255,255,0.15);
-    padding:25px;
-    border-radius:20px;
-    min-height:200px;
+ul{
+    list-style: none;
+    padding: 0;
 }
-.exercise-info{
-    margin-bottom:20px;
-    font-size:0.95em;
+
+li{
+    background: rgba(255,255,255,0.2);
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#info{
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0,0,0,0.3);
+    min-height: 60px;
 }
 
 /* Timer */
-.timer{
-    font-size:2em;
-    text-align:center;
-    margin:15px 0;
-}
-.timer button{
-    margin:5px;
-    padding:8px 18px;
-    border:none;
-    border-radius:20px;
-    cursor:pointer;
-}
-
-/* Zurück */
-.back-btn{
-    display:block;
-    margin:40px auto;
-    padding:12px 30px;
-    border-radius:30px;
-    border:none;
-    font-weight:bold;
-    cursor:pointer;
+#timer{
+    font-size: 24px;
+    margin-top: 15px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- WORKOUT BEISPIEL: SCHNELLKRAFT -->
-<div class="container workout" id="schnellkraft">
-<h2>Schnellkraft Workout</h2>
+<!-- HAUPTSEITE -->
+<div id="home">
+<h1>Fitness & Sport Training</h1>
 
-<div class="workout-layout">
+<button onclick="openWorkout('schnellkraft')">Schnellkraft</button>
+<button onclick="openWorkout('ausdauer')">Ausdauer</button>
+<button onclick="openWorkout('beweglichkeit')">Beweglichkeit</button>
 
-<!-- Übungen -->
-<ul>
-<li class="exercise" data-info="Explosive Sprungkraft aus den Beinen, Fokus auf maximale Höhe.">
-Box Jumps – 30 Sekunden</li>
+<br><br>
 
-<li class="exercise" data-info="Schnelle Kniebeugen mit Absprung, trainiert Reaktivkraft.">
-Jump Squats – 30 Sekunden</li>
+<button onclick="openWorkout('fussball')">⚽ Fußball</button>
+<button onclick="openWorkout('basketball')">🏀 Basketball</button>
 
-<li class="exercise" data-info="Kräftigt Oberkörper und verbessert Explosivität.">
-Medizinball-Würfe – 40 Sekunden</li>
+<br><br>
 
-<li class="exercise" data-info="Maximale Beschleunigung, kurze intensive Sprints.">
-Sprints – 20 Sekunden</li>
-
-<li class="exercise" data-info="Hüftstreckung und Ganzkörperkraft.">
-Kettlebell Swings – 40 Sekunden</li>
-</ul>
-
-<!-- Rechte Info-Seite -->
-<div class="info-box">
-<div class="exercise-info" id="exerciseInfo">
-👉 Klicke auf eine Übung für die Erklärung
+<button onclick="randomWorkout()">🎲 Zufallsgenerator</button>
 </div>
 
-<hr>
+<!-- WORKOUT: SCHNELLKRAFT -->
+<div id="schnellkraft" class="workout">
+<h2>Schnellkraft Workout</h2>
 
-<strong>⏱️ Timer</strong>
-<div class="timer" id="timer">00:00</div>
+<ul>
+<li onclick="showInfo(this,'Explosive Sprünge zur Verbesserung der Beinkraft.')">
+Box Jumps – 30 Sek.
+</li>
+
+<li onclick="showInfo(this,'Schnelle Kniebeugen mit Absprung.')">
+Jump Squats – 30 Sek.
+</li>
+
+<li onclick="showInfo(this,'Kurze, maximale Beschleunigung.')">
+Sprints – 20 Sek.
+</li>
+</ul>
+
+<div id="info">👉 Übung anklicken für Erklärung</div>
+
+<div id="timer">00:00</div>
 <button onclick="startTimer()">Start</button>
 <button onclick="stopTimer()">Stopp</button>
 <button onclick="resetTimer()">Reset</button>
 
-<hr>
-
-<strong>📊 Optimale Workout-Angaben</strong>
 <p>
-Runden: <b>3–4</b><br>
-Pause zwischen Übungen: <b>30 Sek.</b><br>
-Ziel: <b>Explosivität & Schnelligkeit</b>
+<b>Empfehlung:</b><br>
+3–4 Runden<br>
+30 Sek. Pause
 </p>
-</div>
 
-</div>
-
-<button class="back-btn" onclick="goHome()">Zurück</button>
+<button onclick="goHome()">Zurück</button>
 </div>
 
 <script>
-/* Erklärung ein/aus */
-let lastExercise=null;
-document.querySelectorAll('.exercise').forEach(ex=>{
-    ex.addEventListener('click',()=>{
-        const info=document.getElementById('exerciseInfo');
-        if(lastExercise===ex){
-            info.innerText="👉 Klicke auf eine Übung für die Erklärung";
-            lastExercise=null;
-        }else{
-            info.innerText=ex.dataset.info;
-            lastExercise=ex;
-        }
-    });
-});
+/* Navigation */
+function openWorkout(id){
+    document.getElementById("home").style.display="none";
+    document.getElementById(id).style.display="block";
+}
+
+function goHome(){
+    document.querySelectorAll(".workout").forEach(w=>w.style.display="none");
+    document.getElementById("home").style.display="block";
+}
+
+/* Erklärung */
+let active=null;
+function showInfo(el,text){
+    let info=document.getElementById("info");
+    if(active===el){
+        info.innerText="👉 Übung anklicken für Erklärung";
+        active=null;
+    }else{
+        info.innerText=text;
+        active=el;
+    }
+}
+
+/* Zufall */
+function randomWorkout(){
+    const workouts=["schnellkraft"];
+    openWorkout(workouts[Math.floor(Math.random()*workouts.length)]);
+}
 
 /* Timer */
-let seconds=0;
-let interval=null;
+let sec=0;
+let t=null;
 
-function updateTimer(){
-    const min=String(Math.floor(seconds/60)).padStart(2,'0');
-    const sec=String(seconds%60).padStart(2,'0');
-    document.getElementById('timer').innerText=`${min}:${sec}`;
-}
 function startTimer(){
-    if(interval) return;
-    interval=setInterval(()=>{
-        seconds++;
-        updateTimer();
+    if(t) return;
+    t=setInterval(()=>{
+        sec++;
+        document.getElementById("timer").innerText=
+        String(Math.floor(sec/60)).padStart(2,"0")+":"+
+        String(sec%60).padStart(2,"0");
     },1000);
 }
 function stopTimer(){
-    clearInterval(interval);
-    interval=null;
+    clearInterval(t);
+    t=null;
 }
 function resetTimer(){
     stopTimer();
-    seconds=0;
-    updateTimer();
-}
-
-/* Navigation */
-function goHome(){
-    document.querySelectorAll('.workout').forEach(w=>w.style.display="none");
-    // Home kannst du wie zuvor wieder einblenden
+    sec=0;
+    document.getElementById("timer").innerText="00:00";
 }
 </script>
 
